@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smartpsru/screens/home.dart';
 import 'package:smartpsru/screens/news.dart';
+import 'package:smartpsru/screens/profile.dart';
+import 'package:smartpsru/screens/timetable.dart';
 import 'package:smartpsru/widgets/navbar_widget.dart';
 
 class HomeMainPage extends StatefulWidget {
@@ -17,7 +19,8 @@ class _HomeMainPageState extends State<HomeMainPage> {
   final List<Widget> _pages = const [
     HomePage(), // หน้าแรก
     NewsPage(),     // ข่าวสาร
-    //ProfilePage(),  // โปรไฟล์
+    TimeTablePage(),
+    ProfilePage()
   ];
 
   void _onItemTapped(int index) {

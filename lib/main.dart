@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-//import 'package:smartpsru/screens/home.dart';
 import 'package:smartpsru/screens/mainpage.dart';
-//import 'package:smartpsru/screens/home.dart';
-//import 'package:smartpsru/screens/login.dart';
+
 
 
 
