@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartpsru/screens/news.dart';
+//import 'package:smartpsru/screens/news.dart';
 //import 'package:smartpsru/widgets/navbar_widget.dart';
 
 class HomePage extends StatefulWidget {
