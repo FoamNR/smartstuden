@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smartpsru/widgets/navbar_widget.dart';
+import 'package:smartpsru/screens/news.dart';
+//import 'package:smartpsru/widgets/navbar_widget.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -10,19 +11,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
-  void _onItemTapped(int index){
-    setState(() {
-      _currentIndex = index;
-    });
-  }
+    
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: MyNavBar(
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-        ),
+      
       body: Column(
         children: [
           Stack(
