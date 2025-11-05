@@ -21,8 +21,9 @@ class MyNavBar extends StatelessWidget {
       backgroundColor: Colors.white,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'หน้าแรก'),
-        BottomNavigationBarItem(icon: Icon(Icons.school), label: 'ผลการเรียน'),
-        BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'แจ้งเตือน'),
+        BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'ข่าวสาร'),
+        BottomNavigationBarItem(icon: Icon(Icons.date_range), label: 'ตารางเรียน'),
+        //BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'แจ้งเตือน'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'โปรไฟล์'),
       ],
     );
