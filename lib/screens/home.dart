@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:smartpsru/widgets/navbar_widget.dart';
 
 class HomePage extends StatefulWidget {
+
   const HomePage({super.key});
 
   @override
@@ -8,9 +10,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+  void _onItemTapped(int index){
+    setState(() {
+      _currentIndex = index;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: MyNavBar(
+        currentIndex: _currentIndex,
+        onTap: _onItemTapped,
+        ),
       body: Column(
         children: [
           Stack(
@@ -62,6 +74,7 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
+                        // ignore: deprecated_member_use
                         color: Colors.white.withOpacity(0.2),
                         shape: BoxShape.circle,
                       ),
@@ -82,6 +95,7 @@ class _HomePageState extends State<HomePage> {
                   child: Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
+                      // ignore: deprecated_member_use
                       color: Colors.white.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(8),
                       boxShadow: [
