@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smartpsru/screens/grade_result_page.dart';
 import 'package:smartpsru/screens/timetable.dart';
 
 // หน้า Profile หลัก
@@ -195,7 +196,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const TimeTablePage()),
+                          MaterialPageRoute(builder: (context) => const GradeResultPage()),
                         );
                       },
                       child: Container(
