@@ -117,7 +117,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
           statusBarIconBrightness: Brightness.light,
         ),
         iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text('ตารางเรียน', style: TextStyle(color: Colors.white)),
+        title: const Text('ตารางเรียน', style: TextStyle(color: Colors.white, fontSize: 23, fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
