@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smartpsru/screens/timetable.dart';
 
+// หน้า Profile หลัก
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -61,7 +63,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   const SizedBox(width: 15),
-
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -85,12 +86,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         'คณะวิทยาศาสตร์และเทคโนโลยี',
                         style: TextStyle(color: Colors.grey),
                       ),
-                      const SizedBox(height: 5,),
+                      const SizedBox(height: 5),
                       InkWell(
                         onTap: () {
-                          // TODO: ใส่โค้ดออกจากระบบที่นี่ เช่น ลบ token หรือเปลี่ยนหน้า
                           print("ออกจากระบบ");
-                          // ตัวอย่างเช่น กลับไปหน้า Login:
+                          // ตัวอย่างเปลี่ยนหน้าไป Login
                           // Navigator.pushReplacementNamed(context, '/login');
                         },
                         borderRadius: BorderRadius.circular(8),
@@ -124,105 +124,125 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
+
+            // กล่องเมนู 2 อัน
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // กล่องซ้าย
+                  // กล่องซ้าย - ตารางเรียน
                   Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.all(5), // เว้นขอบนิดนึง
-                      padding: const EdgeInsets.all(10),
-                      height: 130,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color(0XFF00A9E0),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 6,
-                            offset: Offset(0, 0),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.date_range,
-                              color: Colors.white,
-                              size: 40,
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              "ตารางเรียน",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                            Text(
-                              "ดูผลการเรียนของฉัน",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
-                              ),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const TimeTablePage()),
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(10),
+                        height: 130,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: const Color(0XFF00A9E0),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 6,
+                              offset: Offset(0, 0),
                             ),
                           ],
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.date_range,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                "ตารางเรียน",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              Text(
+                                "ดูตารางเรียนของฉัน",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
 
-                  // กล่องขวา
+                  // กล่องขวา - ผลการเรียน
                   Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.all(5),
-                      padding: const EdgeInsets.all(10),
-                      height: 130,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 6,
-                            offset: Offset(0, 0),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text(
-                              'A+',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 35,
-                                color: Color(0XFF00A9E0),
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              "ตารางเรียน",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                            Text(
-                              "ดูผลการเรียนของฉัน",
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const TimeTablePage()),
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(10),
+                        height: 130,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 6,
+                              offset: Offset(0, 0),
                             ),
                           ],
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                'A+',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 35,
+                                  color: Color(0XFF00A9E0),
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                "ผลการเรียน",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              Text(
+                                "ดูผลการเรียนของฉัน",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
