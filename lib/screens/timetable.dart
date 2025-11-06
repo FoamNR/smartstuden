@@ -10,12 +10,7 @@ class TimeTablePage extends StatefulWidget {
 
 class _TimeTablePageState extends State<TimeTablePage> {
   String? selectedYear = '2/2567'; // ค่าเริ่มต้น
-  final List<String> years = [
-    '1/2567',
-    '2/2567',
-    '1/2568',
-    '2/2568',
-  ];
+  final List<String> years = ['1/2567', '2/2567', '1/2568', '2/2568'];
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +26,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
         title: const Text('ตารางเรียน', style: TextStyle(color: Colors.white)),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(13),
         child: Column(
           children: [
             Row(
@@ -53,14 +48,11 @@ class _TimeTablePageState extends State<TimeTablePage> {
                     SizedBox(height: 4),
                     Text(
                       'สาขา วิทยาการคอมพิวเตอร์',
-                      style: TextStyle(
-                        color: Color(0xFF7A7A7A),
-                        fontSize: 14,
-                      ),
+                      style: TextStyle(color: Color(0xFF7A7A7A), fontSize: 14),
                     ),
                   ],
                 ),
-            
+
                 // Dropdown ปีการศึกษา
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -75,7 +67,7 @@ class _TimeTablePageState extends State<TimeTablePage> {
                     const SizedBox(height: 6),
                     Container(
                       height: 45,
-                      padding: const EdgeInsets.symmetric(horizontal: 12, ),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(color: Colors.grey.shade400),
@@ -104,6 +96,21 @@ class _TimeTablePageState extends State<TimeTablePage> {
                   ],
                 ),
               ],
+            ),
+            SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 232, 232, 232),
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 6,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
