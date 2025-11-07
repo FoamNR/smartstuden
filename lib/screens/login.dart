@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartpsru/screens/home.dart';
+//mport 'package:smartpsru/screens/home.dart';
 import 'package:smartpsru/screens/mainpage.dart';
 
 class LoginPage extends StatelessWidget {

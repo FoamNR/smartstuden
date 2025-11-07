@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smartpsru/screens/news.dart';
+import 'package:smartpsru/screens/profile.dart';
+import 'package:smartpsru/screens/timetable.dart';
 //import 'package:smartpsru/screens/news.dart';
 //import 'package:smartpsru/widgets/navbar_widget.dart';
 
@@ -202,23 +205,40 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
 
-                          // 🔽 ลบ SizedBox หรือปรับให้เล็กลง
                           GridView.count(
-                            crossAxisCount: 3, // 3 คอลัมน์
+                            crossAxisCount: 3,
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             mainAxisSpacing: 15,
                             crossAxisSpacing: 15,
                             children: [
-                              _buildMenuItem(Icons.person, "ข้อมูลส่วนตัว"),
-                              _buildMenuItem(Icons.info, "ข้อมูลส่วนตัว"),
-                              _buildMenuItem(Icons.payment, "การชำระเงิน"),
+                              _buildMenuItem(
+                                Icons.person,
+                                "ข้อมูลส่วนตัว",
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (_) => ProfilePage()));
+                                },
+                              ),
+                              _buildMenuItem(
+                                Icons.newspaper,
+                                "ข่าวสาร",
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (_) => NewsPage()));
+                                },
+                              ),
+                              _buildMenuItem(
+                                Icons.payments_sharp,
+                                "การชำระเงิน",
+                              ),
                               _buildMenuItem(Icons.menu_book, "แผนการเรียน"),
                               _buildMenuItem(
                                 Icons.calendar_month,
-                                "ข้อมูลส่วนตัว",
+                                "ตารางเรียน",
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (_) => TimeTablePage()));
+                                },
                               ),
-                              _buildMenuItem(Icons.schedule, "ตารางสอบ"),
+                              _buildMenuItem(Icons.date_range, "ตารางสอน"),
                               _buildMenuItem(
                                 Icons.edit_document,
                                 "ลงทะเบียนเรียน",
@@ -232,8 +252,11 @@ class _HomePageState extends State<HomePage> {
                                 "รายวิชาที่เปิดสอบ",
                               ),
                               _buildMenuItem(Icons.table_chart, "ผลการเรียน"),
-                              _buildMenuItem(Icons.school, "วุฒิการศึกษา"),
-                              _buildMenuItem(Icons.check_box, "ประเมินผล"),
+                              _buildMenuItem(Icons.school, "สำเร็จการศึกษา"),
+                              _buildMenuItem(
+                                Icons.edit_calendar_rounded,
+                                "ตารางสอบ",
+                              ),
                             ],
                           ),
                         ],
@@ -249,25 +272,35 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String title) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(15),
-          decoration: BoxDecoration(
-            color: const Color(0xFF6EC6FF),
-            borderRadius: BorderRadius.circular(10),
+  Widget _buildMenuItem(IconData icon, String title, {VoidCallback? onTap}) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(10),
+      onTap:
+          onTap ??
+          () {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text('คุณกดเมนู: $title')));
+          },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: const Color(0xFF6EC6FF),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(icon, color: Colors.white, size: 30),
           ),
-          child: Icon(icon, color: Colors.white, size: 30),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          title,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-          textAlign: TextAlign.center,
-        ),
-      ],
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
     );
   }
 }
