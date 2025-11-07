@@ -205,37 +205,54 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
 
-                          GridView.count(
-                            crossAxisCount: 3,
+                          GridView(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            mainAxisSpacing: 15,
-                            crossAxisSpacing: 15,
+                            gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent:
+                                      150, // ความกว้างสูงสุดต่อช่อง (จะปรับคอลัมน์อัตโนมัติ)
+                                  crossAxisSpacing: 15,
+                                  mainAxisSpacing: 15,
+                                  //childAspectRatio: 1, // อัตราส่วนกว้าง/สูง
+                                ),
                             children: [
                               _buildMenuItem(
                                 Icons.person,
                                 "ข้อมูลส่วนตัว",
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (_) => ProfilePage()));
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => ProfilePage(),
+                                    ),
+                                  );
                                 },
                               ),
                               _buildMenuItem(
                                 Icons.newspaper,
                                 "ข่าวสาร",
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (_) => NewsPage()));
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => NewsPage(),
+                                    ),
+                                  );
                                 },
                               ),
-                              _buildMenuItem(
-                                Icons.payments_sharp,
-                                "การชำระเงิน",
-                              ),
+                              _buildMenuItem(Icons.attach_money, "การชำระเงิน"),
                               _buildMenuItem(Icons.menu_book, "แผนการเรียน"),
                               _buildMenuItem(
                                 Icons.calendar_month,
                                 "ตารางเรียน",
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (_) => TimeTablePage()));
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => TimeTablePage(),
+                                    ),
+                                  );
                                 },
                               ),
                               _buildMenuItem(Icons.date_range, "ตารางสอน"),
@@ -251,7 +268,7 @@ class _HomePageState extends State<HomePage> {
                                 Icons.list_alt,
                                 "รายวิชาที่เปิดสอบ",
                               ),
-                              _buildMenuItem(Icons.table_chart, "ผลการเรียน"),
+                              _buildMenuItem(Icons.assignment, "ผลการเรียน"),
                               _buildMenuItem(Icons.school, "สำเร็จการศึกษา"),
                               _buildMenuItem(
                                 Icons.edit_calendar_rounded,
