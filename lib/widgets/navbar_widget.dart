@@ -22,8 +22,8 @@ class MyNavBar extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'หน้าแรก'),
         BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'ข่าวสาร'),
+         BottomNavigationBarItem(icon: Icon(Icons.apartment), label: 'อาคาร'),
         BottomNavigationBarItem(icon: Icon(Icons.date_range), label: 'ตารางเรียน'),
-        //BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'แจ้งเตือน'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'โปรไฟล์'),
       ],
     );

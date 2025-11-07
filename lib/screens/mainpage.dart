@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartpsru/screens/building.dart';
 import 'package:smartpsru/screens/home.dart';
 import 'package:smartpsru/screens/news.dart';
 import 'package:smartpsru/screens/profile.dart';
@@ -18,7 +19,8 @@ class _HomeMainPageState extends State<HomeMainPage> {
   // ✅ กำหนดหน้าที่จะใช้สลับ
   final List<Widget> _pages = const [
     HomePage(), // หน้าแรก
-    NewsPage(),     // ข่าวสาร
+    NewsPage(),
+    BuildingPage(),
     TimeTablePage(),
     ProfilePage()
   ];
