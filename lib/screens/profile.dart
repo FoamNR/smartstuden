@@ -7,7 +7,6 @@ import 'package:smartpsru/screens/timetable.dart';
 // หน้า Profile หลัก
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
-
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -21,8 +20,8 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: const Color(0XFF00A9E0),
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.light, // Android → สีขาว
-          statusBarBrightness: Brightness.dark, // iOS → สีขาว
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.dark,
         ),
       ),
       body: SingleChildScrollView(
@@ -37,7 +36,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(fontSize: 18, color: Color(0xFF7C7C7C)),
               ),
             ),
-
             // กล่องโปรไฟล์
             Container(
               margin: const EdgeInsets.all(10),
@@ -91,15 +89,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       const SizedBox(height: 5),
                       InkWell(
                         onTap: () {
-                          //print("ออกจากระบบ");
-                          // ตัวอย่างเปลี่ยนหน้าไป Login
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
                               builder: (context) => LoginPage(),
                             ),
-                            (Route<dynamic> route) =>
-                                false, // This predicate makes sure all previous routes are removed
+                            (Route<dynamic> route) => false,
                           );
                         },
                         borderRadius: BorderRadius.circular(8),
@@ -133,7 +128,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-
             // กล่องเมนู 2 อัน
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -198,7 +192,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
-
                   // กล่องขวา - ผลการเรียน
                   Expanded(
                     child: InkWell(
@@ -263,9 +256,89 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
+            // หัวข้อข้อมูลนักศึกษา
+            Container(
+              alignment: Alignment.centerLeft,
+              margin: const EdgeInsets.all(10),
+              child: const Text(
+                'ข้อมูลนักศึกษา',
+                style: TextStyle(fontSize: 18, color: Color(0xFF7C7C7C)),
+              ),
+            ),
+            // กล่องข้อมูลนักศึกษา
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 6,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  _buildInfoRow(Icons.person, 'ชื่อ-นามสกุล', 'นายสมชาย ใจดี'),
+                  const Divider(height: 20),
+                  _buildInfoRow(Icons.badge, 'รหัสนักศึกษา', '65xxxxxxxx'),
+                  const Divider(height: 20),
+                  _buildInfoRow(Icons.school, 'สาขาวิชา', 'วิทยาการคอมพิวเตอร์'),
+                  const Divider(height: 20),
+                  _buildInfoRow(Icons.business, 'คณะ', 'วิทยาศาสตร์และเทคโนโลยี'),
+                  const Divider(height: 20),
+                  _buildInfoRow(Icons.calendar_today, 'ชั้นปี', '4'),
+                  const Divider(height: 20),
+                  _buildInfoRow(Icons.email, 'อีเมล', 'somchai@email.psru.ac.th'),
+                  const Divider(height: 20),
+                  _buildInfoRow(Icons.phone, 'เบอร์โทร', '098-xxx-xxxx'),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
+    );
+  }
+
+  // Widget สำหรับแสดงแถวข้อมูล
+  Widget _buildInfoRow(IconData icon, String label, String value) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          color: const Color(0XFF00A9E0),
+          size: 24,
+        ),
+        const SizedBox(width: 15),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                value,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
