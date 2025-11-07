@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smartpsru/screens/grade_result_page.dart';
+import 'package:smartpsru/screens/login.dart';
 import 'package:smartpsru/screens/timetable.dart';
 
 // หน้า Profile หลัก
@@ -90,9 +91,16 @@ class _ProfilePageState extends State<ProfilePage> {
                       const SizedBox(height: 5),
                       InkWell(
                         onTap: () {
-                          print("ออกจากระบบ");
+                          //print("ออกจากระบบ");
                           // ตัวอย่างเปลี่ยนหน้าไป Login
-                          // Navigator.pushReplacementNamed(context, '/login');
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage(),
+                            ),
+                            (Route<dynamic> route) =>
+                                false, // This predicate makes sure all previous routes are removed
+                          );
                         },
                         borderRadius: BorderRadius.circular(8),
                         child: Container(
@@ -139,7 +147,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const TimeTablePage()),
+                          MaterialPageRoute(
+                            builder: (context) => const TimeTablePage(),
+                          ),
                         );
                       },
                       child: Container(
@@ -196,7 +206,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const GradeResultPage()),
+                          MaterialPageRoute(
+                            builder: (context) => const GradeResultPage(),
+                          ),
                         );
                       },
                       child: Container(

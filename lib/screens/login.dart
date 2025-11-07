@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartpsru/screens/home.dart';
+import 'package:smartpsru/screens/mainpage.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -153,11 +154,13 @@ class LoginPage extends StatelessWidget {
                               elevation: 2,
                             ),
                             onPressed: () {
-                              Navigator.push(
+                              Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const HomePage(),
+                                  builder: (context) => HomeMainPage(),
                                 ),
+                                (Route<dynamic> route) =>
+                                    false, // This predicate makes sure all previous routes are removed
                               );
                               print("รหัสนักศึกษา: ${userController.text}");
                               print("รหัสผ่าน: ${passController.text}");
