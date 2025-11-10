@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:smartpsru/screens/news.dart';
 import 'package:smartpsru/screens/plan.dart';
 import 'package:smartpsru/screens/profile.dart';
+import 'package:smartpsru/screens/register_course_page.dart';
 import 'package:smartpsru/screens/timetable.dart';
 //import 'package:smartpsru/screens/news.dart';
 //import 'package:smartpsru/widgets/navbar_widget.dart';
@@ -264,6 +265,9 @@ class _HomePageState extends State<HomePage> {
                               _buildMenuItem(
                                 Icons.edit_document,
                                 "ลงทะเบียนเรียน",
+                                onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterPage()));
+                              },
                               ),
                               _buildMenuItem(
                                 Icons.library_music,
