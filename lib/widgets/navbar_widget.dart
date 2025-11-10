@@ -21,10 +21,10 @@ class MyNavBar extends StatelessWidget {
       backgroundColor: Colors.white,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'หน้าแรก'),
-        BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'ข่าวสาร'),
+        BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'ข่าว'),
          BottomNavigationBarItem(icon: Icon(Icons.apartment), label: 'อาคาร'),
         BottomNavigationBarItem(icon: Icon(Icons.date_range), label: 'ตารางเรียน'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'โปรไฟล์'),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'บัญชี'),
       ],
     );
   }
