@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smartpsru/screens/news.dart';
+import 'package:smartpsru/screens/plan.dart';
 import 'package:smartpsru/screens/profile.dart';
 import 'package:smartpsru/screens/timetable.dart';
 //import 'package:smartpsru/screens/news.dart';
@@ -242,7 +243,11 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(Icons.attach_money, "การชำระเงิน"),
-                              _buildMenuItem(Icons.menu_book, "แผนการเรียน"),
+                              _buildMenuItem(Icons.menu_book, "แผนการเรียน",
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (_) => PlanPage()));
+                              },
+                              ),
                               _buildMenuItem(
                                 Icons.calendar_month,
                                 "ตารางเรียน",
