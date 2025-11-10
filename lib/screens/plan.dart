@@ -135,7 +135,7 @@ class _PlanPageState extends State<PlanPage> {
                           color: Color(0XFF00A9E0),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      //const SizedBox(height: 10),
                       ...List.generate(
                         plan['courses'].length,
                         (i) {
@@ -144,7 +144,7 @@ class _PlanPageState extends State<PlanPage> {
                             children: [
                               ListTile(
                                 
-                                title: Text("${course['code']} - ${course['name']}"),
+                                title: Text("${course['code']} ${course['name']}"),
                                 subtitle: Text("${course['credit']} สถานะ: ${course['status']}"),
                               ),
                               if (i < plan['courses'].length - 1)
