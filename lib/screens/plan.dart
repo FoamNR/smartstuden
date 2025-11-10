@@ -112,7 +112,6 @@ class _PlanPageState extends State<PlanPage> {
             ),
           ),
 
-          // ✅ ส่วนของแผนการเรียน
           ...List.generate(
             studyPlan.length,
             (index) {
