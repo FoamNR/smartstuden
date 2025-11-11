@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smartpsru/screens/news.dart';
+import 'package:smartpsru/screens/payment_page.dart';
 import 'package:smartpsru/screens/plan.dart';
 import 'package:smartpsru/screens/profile.dart';
 import 'package:smartpsru/screens/register_course_page.dart';
@@ -243,11 +244,29 @@ class _HomePageState extends State<HomePage> {
                                   );
                                 },
                               ),
-                              _buildMenuItem(Icons.attach_money, "การชำระเงิน"),
-                              _buildMenuItem(Icons.menu_book, "แผนการเรียน",
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (_) => PlanPage()));
-                              },
+                              _buildMenuItem(
+                                Icons.attach_money,
+                                "การชำระเงิน",
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PaymentPage(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              _buildMenuItem(
+                                Icons.menu_book,
+                                "แผนการเรียน",
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PlanPage(),
+                                    ),
+                                  );
+                                },
                               ),
                               _buildMenuItem(
                                 Icons.calendar_month,
@@ -265,9 +284,14 @@ class _HomePageState extends State<HomePage> {
                               _buildMenuItem(
                                 Icons.edit_document,
                                 "ลงทะเบียนเรียน",
-                                onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (_) => RegisterPage()));
-                              },
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => RegisterPage(),
+                                    ),
+                                  );
+                                },
                               ),
                               _buildMenuItem(
                                 Icons.library_music,

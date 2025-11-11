@@ -13,12 +13,66 @@ class _RegisterPageState extends State<RegisterPage> {
   static const Color backgroundColor = Color(0xFFF5F9FC);
 
   final List<Map<String, dynamic>> availableCourses = [
-    {'code': 'CSC201', 'name': 'โครงสร้างข้อมูล', 'credit': "3(2-2-5)", 'creditValue': 3},
-    {'code': 'CSC202', 'name': 'ฐานข้อมูลเบื้องต้น', 'credit': "3(2-2-5)", 'creditValue': 3},
-    {'code': 'CSC203', 'name': 'ระบบปฏิบัติการ', 'credit': "3(2-2-5)", 'creditValue': 3},
-    {'code': 'GEN201', 'name': 'การคิดเชิงวิเคราะห์', 'credit': "3(2-2-5)", 'creditValue': 3},
-    {'code': 'ENG101', 'name': 'ภาษาอังกฤษพื้นฐาน', 'credit': "3(3-0-6)", 'creditValue': 3},
-    {'code': 'MAT101', 'name': 'คณิตศาสตร์สำหรับคอมพิวเตอร์', 'credit': "3(3-0-6)", 'creditValue': 3},
+    {
+      'code': 'CSC201',
+      'name': 'โครงสร้างข้อมูล',
+      'credit': "3(2-2-5)",
+      'creditValue': 3,
+      'teacher': 'อ.ธนกฤต สมศักดิ์',
+      'schedule': 'จันทร์ 09:00 - 11:00',
+      'room': 'SC-301',
+      'group': 'j ปฏิบัติ'
+    },
+    {
+      'code': 'CSC202',
+      'name': 'ฐานข้อมูลเบื้องต้น',
+      'credit': "3(2-2-5)",
+      'creditValue': 3,
+      'teacher': 'อ.วราภรณ์ จันทร์เพ็ญ',
+      'schedule': 'อังคาร 10:00 - 12:00',
+      'room': 'SC-302',
+      'group': 'j ปฏิบัติ'
+    },
+    {
+      'code': 'CSC203',
+      'name': 'ระบบปฏิบัติการ',
+      'credit': "3(2-2-5)",
+      'creditValue': 3,
+      'teacher': 'อ.ปิยะวัฒน์ สุขสวัสดิ์',
+      'schedule': 'พุธ 13:00 - 15:00',
+      'room': 'SC-303',
+      'group': 'j ปฏิบัติ'
+    },
+    {
+      'code': 'GEN201',
+      'name': 'การคิดเชิงวิเคราะห์',
+      'credit': "3(2-2-5)",
+      'creditValue': 3,
+      'teacher': 'อ.มณีรัตน์ ใจดี',
+      'schedule': 'พฤหัส 09:00 - 11:00',
+      'room': 'HUM-101',
+      'group': 'j ปฏิบัติ'
+    },
+    {
+      'code': 'ENG101',
+      'name': 'ภาษาอังกฤษพื้นฐาน',
+      'credit': "3(3-0-6)",
+      'creditValue': 3,
+      'teacher': 'อ.สุทธิดา ศรีสงคราม',
+      'schedule': 'ศุกร์ 10:00 - 12:00',
+      'room': 'ENG-201',
+      'group': 'j ปฏิบัติ'
+    },
+    {
+      'code': 'MAT101',
+      'name': 'คณิตศาสตร์สำหรับคอมพิวเตอร์',
+      'credit': "3(3-0-6)",
+      'creditValue': 3,
+      'teacher': 'อ.ณัฐวุฒิ จันทรา',
+      'schedule': 'จันทร์ 13:00 - 15:00',
+      'room': 'SC-304',
+      'group': 'j ปฏิบัติ'
+    },
   ];
 
   final List<Map<String, dynamic>> selectedCourses = [];
@@ -123,10 +177,22 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   elevation: isSelected ? 4 : 1,
                   child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                     title: Text("${course['code']}: ${course['name']}",
                         style: TextStyle(fontWeight: FontWeight.bold, color: isSelected ? primaryColor : Colors.black87)),
-                    subtitle: Text("หน่วยกิต: ${course['credit']}"),
+                    subtitle: Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("หน่วยกิต: ${course['credit']}"),
+                          Text("อาจารย์ผู้สอน: ${course['teacher']}"),
+                          Text("วันเวลาเรียน: ${course['schedule']}"),
+                          Text("ห้องเรียน: ${course['room']}"),
+                          Text("กลุ่ม: ${course['group']}"),
+                        ],
+                      ),
+                    ),
                     trailing: Checkbox(activeColor: primaryColor, value: isSelected, onChanged: (_) => toggleCourse(course)),
                     onTap: () => toggleCourse(course),
                   ),
