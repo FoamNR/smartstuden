@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smartpsru/screens/elective_booking.dart';
 import 'package:smartpsru/screens/grade_result_page.dart';
 import 'package:smartpsru/screens/news.dart';
 import 'package:smartpsru/screens/payment_page.dart';
@@ -297,6 +298,14 @@ class _HomePageState extends State<HomePage> {
                               _buildMenuItem(
                                 Icons.library_music,
                                 "จองวิชาเสรี",
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => BookingElective(),
+                                    ),
+                                  );
+                                },
                               ),
                               _buildMenuItem(
                                 Icons.list_alt,
