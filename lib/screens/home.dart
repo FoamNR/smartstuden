@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smartpsru/screens/grade_result_page.dart';
 import 'package:smartpsru/screens/news.dart';
 import 'package:smartpsru/screens/payment_page.dart';
 import 'package:smartpsru/screens/plan.dart';
@@ -301,7 +302,16 @@ class _HomePageState extends State<HomePage> {
                                 Icons.list_alt,
                                 "รายวิชาที่เปิดสอบ",
                               ),
-                              _buildMenuItem(Icons.assignment, "ผลการเรียน"),
+                              _buildMenuItem(Icons.assignment, "ผลการเรียน",
+                              onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => GradeResultPage(),
+                                    ),
+                                  );
+                                },
+                              ),
                               _buildMenuItem(Icons.school, "สำเร็จการศึกษา"),
                               _buildMenuItem(
                                 Icons.edit_calendar_rounded,
