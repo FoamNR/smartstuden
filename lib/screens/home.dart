@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smartpsru/screens/elective_booking.dart';
+import 'package:smartpsru/screens/evaluation_screen.dart';
 import 'package:smartpsru/screens/grade_result_page.dart';
 import 'package:smartpsru/screens/graduation.dart';
 import 'package:smartpsru/screens/news.dart';
@@ -338,7 +339,15 @@ class _HomePageState extends State<HomePage> {
                               ),
                               _buildMenuItem(
                                 Icons.edit_calendar_rounded,
-                                "ตารางสอบ",
+                                "การประเมิน",
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => EvaluationPage(),
+                                    ),
+                                  );
+                                },
                               ),
                             ],
                           ),
