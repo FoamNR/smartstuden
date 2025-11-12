@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smartpsru/screens/elective_booking.dart';
 import 'package:smartpsru/screens/grade_result_page.dart';
+import 'package:smartpsru/screens/graduation.dart';
 import 'package:smartpsru/screens/news.dart';
 import 'package:smartpsru/screens/payment_page.dart';
 import 'package:smartpsru/screens/plan.dart';
@@ -311,8 +312,10 @@ class _HomePageState extends State<HomePage> {
                                 Icons.list_alt,
                                 "รายวิชาที่เปิดสอบ",
                               ),
-                              _buildMenuItem(Icons.assignment, "ผลการเรียน",
-                              onTap: () {
+                              _buildMenuItem(
+                                Icons.assignment,
+                                "ผลการเรียน",
+                                onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -321,7 +324,18 @@ class _HomePageState extends State<HomePage> {
                                   );
                                 },
                               ),
-                              _buildMenuItem(Icons.school, "สำเร็จการศึกษา"),
+                              _buildMenuItem(
+                                Icons.school,
+                                "สำเร็จการศึกษา",
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => GraduationPage(),
+                                    ),
+                                  );
+                                },
+                              ),
                               _buildMenuItem(
                                 Icons.edit_calendar_rounded,
                                 "ตารางสอบ",
