@@ -4,6 +4,29 @@ import 'package:smartpsru/screens/grade_result_page.dart';
 import 'package:smartpsru/screens/login.dart';
 import 'package:smartpsru/screens/timetable.dart';
 
+// 1. Model Class สำหรับข้อมูลนักศึกษา (Student Data Model)
+class Student {
+  final String fullName;
+  final String studentId;
+  final String major;
+  final String faculty;
+  final String year;
+  final String email;
+  final String phone;
+  final String profileImagePath;
+
+  Student({
+    required this.fullName,
+    required this.studentId,
+    required this.major,
+    required this.faculty,
+    required this.year,
+    required this.email,
+    required this.phone,
+    required this.profileImagePath,
+  });
+}
+
 // หน้า Profile หลัก
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -12,6 +35,56 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  // 2. Mock Data: สร้าง Object ของ Student
+  final Student _mockStudent = Student(
+    fullName: 'นายสมชาย ใจดี',
+    studentId: '65xxxxxxxx',
+    major: 'วิทยาการคอมพิวเตอร์',
+    faculty: 'คณะวิทยาศาสตร์และเทคโนโลยี',
+    year: '4',
+    email: 'somchai@email.psru.ac.th',
+    phone: '098-xxx-xxxx',
+    profileImagePath: 'assets/images/profile.png', // รูปภาพโปรไฟล์
+  );
+
+  // Widget สำหรับแสดงแถวข้อมูล
+  Widget _buildInfoRow(IconData icon, String label, String value) {
+    
+    return Row(
+      children: [
+        Icon(
+          icon,
+          color: Color(0XFF00A9E0),
+          size: 24,
+        ),
+        const SizedBox(width: 15),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                value,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(fontSize: 18, color: Color(0xFF7C7C7C)),
               ),
             ),
-            // กล่องโปรไฟล์
+            // กล่องโปรไฟล์ - ใช้ Mock Data
             Container(
               margin: const EdgeInsets.all(10),
               padding: const EdgeInsets.all(10),
@@ -57,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: SizedBox.fromSize(
                       size: const Size.fromRadius(50),
                       child: Image.asset(
-                        'assets/images/profile.png',
+                        _mockStudent.profileImagePath, // ใช้ Mock Data
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -66,25 +139,25 @@ class _ProfilePageState extends State<ProfilePage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'นายสมชาย ใจดี',
-                        style: TextStyle(
+                      Text(
+                        _mockStudent.fullName, // ใช้ Mock Data
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Color(0XFF00A9E0),
                         ),
                       ),
-                      const Text(
-                        'รหัสนักศึกษา : 65xxxxxxxx',
-                        style: TextStyle(color: Colors.grey),
+                      Text(
+                        'รหัสนักศึกษา : ${_mockStudent.studentId}', // ใช้ Mock Data
+                        style: const TextStyle(color: Colors.grey),
                       ),
-                      const Text(
-                        'สาขาวิทยาการคอมพิวเตอร์',
-                        style: TextStyle(color: Colors.grey),
+                      Text(
+                        _mockStudent.major, // ใช้ Mock Data
+                        style: const TextStyle(color: Colors.grey),
                       ),
-                      const Text(
-                        'คณะวิทยาศาสตร์และเทคโนโลยี',
-                        style: TextStyle(color: Colors.grey),
+                      Text(
+                        _mockStudent.faculty, // ใช้ Mock Data
+                        style: const TextStyle(color: Colors.grey),
                       ),
                       const SizedBox(height: 5),
                       InkWell(
@@ -128,7 +201,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            // กล่องเมนู 2 อัน
+            // กล่องเมนู 2 อัน (ส่วนนี้ไม่มีข้อมูลนักศึกษามาเกี่ยวข้องโดยตรง)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Row(
@@ -265,7 +338,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(fontSize: 18, color: Color(0xFF7C7C7C)),
               ),
             ),
-            // กล่องข้อมูลนักศึกษา
+            // กล่องข้อมูลนักศึกษา - ใช้ Mock Data
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               padding: const EdgeInsets.all(15),
@@ -282,19 +355,19 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               child: Column(
                 children: [
-                  _buildInfoRow(Icons.person, 'ชื่อ-นามสกุล', 'นายสมชาย ใจดี'),
+                  _buildInfoRow(Icons.person, 'ชื่อ-นามสกุล', _mockStudent.fullName), // ใช้ Mock Data
                   const Divider(height: 20),
-                  _buildInfoRow(Icons.badge, 'รหัสนักศึกษา', '65xxxxxxxx'),
+                  _buildInfoRow(Icons.badge, 'รหัสนักศึกษา', _mockStudent.studentId), // ใช้ Mock Data
                   const Divider(height: 20),
-                  _buildInfoRow(Icons.school, 'สาขาวิชา', 'วิทยาการคอมพิวเตอร์'),
+                  _buildInfoRow(Icons.school, 'สาขาวิชา', _mockStudent.major), // ใช้ Mock Data
                   const Divider(height: 20),
-                  _buildInfoRow(Icons.business, 'คณะ', 'วิทยาศาสตร์และเทคโนโลยี'),
+                  _buildInfoRow(Icons.business, 'คณะ', _mockStudent.faculty), // ใช้ Mock Data
                   const Divider(height: 20),
-                  _buildInfoRow(Icons.calendar_today, 'ชั้นปี', '4'),
+                  _buildInfoRow(Icons.calendar_today, 'ชั้นปี', _mockStudent.year), // ใช้ Mock Data
                   const Divider(height: 20),
-                  _buildInfoRow(Icons.email, 'อีเมล', 'somchai@email.psru.ac.th'),
+                  _buildInfoRow(Icons.email, 'อีเมล', _mockStudent.email), // ใช้ Mock Data
                   const Divider(height: 20),
-                  _buildInfoRow(Icons.phone, 'เบอร์โทร', '098-xxx-xxxx'),
+                  _buildInfoRow(Icons.phone, 'เบอร์โทร', _mockStudent.phone), // ใช้ Mock Data
                 ],
               ),
             ),
@@ -302,43 +375,6 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
         ),
       ),
-    );
-  }
-
-  // Widget สำหรับแสดงแถวข้อมูล
-  Widget _buildInfoRow(IconData icon, String label, String value) {
-    return Row(
-      children: [
-        Icon(
-          icon,
-          color: const Color(0XFF00A9E0),
-          size: 24,
-        ),
-        const SizedBox(width: 15),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black87,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
