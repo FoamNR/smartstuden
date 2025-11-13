@@ -11,7 +11,7 @@ class OfferedCoursesPage extends StatefulWidget {
 }
 
 class _OfferedCoursesPageState extends State<OfferedCoursesPage> {
-  final List<Map<String, String>> courses = [
+  final List<Map<String, String>> _allCourses = [
     {
       "no": "1",
       "code": "1001802",
@@ -102,6 +102,29 @@ class _OfferedCoursesPageState extends State<OfferedCoursesPage> {
     },
   ];
 
+  List<Map<String, String>> _filteredCourses = [];
+  String _searchQuery = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredCourses = _allCourses;
+  }
+
+  void _filterCourses(String query) {
+    setState(() {
+      _searchQuery = query;
+      _filteredCourses = _allCourses.where((course) {
+        final name = course["name"]!.toLowerCase();
+        final code = course["code"]!.toLowerCase();
+        final teacher = course["teacher"]!.toLowerCase();
+        return name.contains(query.toLowerCase()) ||
+            code.contains(query.toLowerCase()) ||
+            teacher.contains(query.toLowerCase());
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,7 +143,7 @@ class _OfferedCoursesPageState extends State<OfferedCoursesPage> {
       ),
       body: Column(
         children: [
-          // 🔹 หัวข้อภาคเรียน
+          // 🔹 ภาคเรียน
           Container(
             width: double.infinity,
             color: Colors.white,
@@ -141,45 +164,79 @@ class _OfferedCoursesPageState extends State<OfferedCoursesPage> {
             ),
           ),
           const Divider(height: 1),
+
+          // 🔹 ช่องค้นหา
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: TextField(
+              onChanged: _filterCourses,
+              decoration: InputDecoration(
+                hintText: 'ค้นหารายวิชา / รหัส / อาจารย์...',
+                prefixIcon: const Icon(Icons.search, color: primaryColor),
+                filled: true,
+                fillColor: Colors.white,
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                suffixIcon: _searchQuery.isNotEmpty
+                    ? IconButton(
+                        icon: const Icon(Icons.clear, color: Colors.grey),
+                        onPressed: () => _filterCourses(''),
+                      )
+                    : null,
+              ),
+            ),
+          ),
+
           // 🔹 รายวิชา
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(12),
-              itemCount: courses.length,
-              itemBuilder: (context, index) {
-                final course = courses[index];
-                return Card(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 2,
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${course["no"]}. ${course["name"]}',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: primaryColor,
+            child: _filteredCourses.isEmpty
+                ? const Center(
+                    child: Text(
+                      'ไม่พบรายวิชาที่ค้นหา',
+                      style: TextStyle(fontSize: 16, color: Colors.black54),
+                    ),
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    itemCount: _filteredCourses.length,
+                    itemBuilder: (context, index) {
+                      final course = _filteredCourses[index];
+                      return Card(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        elevation: 2,
+                        margin: const EdgeInsets.symmetric(vertical: 8),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${course["no"]}. ${course["name"]}',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: primaryColor,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              _buildRow(Icons.code, 'รหัสวิชา: ${course["code"]} (SEC ${course["sec"]})'),
+                              _buildRow(Icons.calendar_today, 'วันเรียน: ${course["day"]} | คาบ: ${course["period"]}'),
+                              _buildRow(Icons.room, 'ห้องเรียน: ${course["room"]}'),
+                              _buildRow(Icons.group, 'กลุ่มนักศึกษา: ${course["group"]}'),
+                              _buildRow(Icons.person, 'อาจารย์ผู้สอน: ${course["teacher"]}'),
+                            ],
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        _buildRow(Icons.code, 'รหัสวิชา: ${course["code"]} (SEC ${course["sec"]})'),
-                        _buildRow(Icons.calendar_today, 'วันเรียน: ${course["day"]} | คาบ: ${course["period"]}'),
-                        _buildRow(Icons.room, 'ห้องเรียน: ${course["room"]}'),
-                        _buildRow(Icons.group, 'กลุ่มนักศึกษา: ${course["group"]}'),
-                        _buildRow(Icons.person, 'อาจารย์ผู้สอน: ${course["teacher"]}'),
-                      ],
-                    ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),
