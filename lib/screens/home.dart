@@ -12,8 +12,6 @@ import 'package:smartpsru/screens/plan.dart';
 import 'package:smartpsru/screens/profile.dart';
 import 'package:smartpsru/screens/register_course_page.dart';
 import 'package:smartpsru/screens/timetable.dart';
-//import 'package:smartpsru/screens/news.dart';
-//import 'package:smartpsru/widgets/navbar_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,9 +25,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent, // ให้พื้นหลังโปร่งใส
-        statusBarIconBrightness: Brightness.light, // Android → ไอคอนสีขาว
-        statusBarBrightness: Brightness.dark, // iOS → ไอคอนสีขาว
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
       ),
       child: Scaffold(
         body: Column(
@@ -39,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 180,
+                  height: 160,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [Color(0xFF00A9E0), Color(0xFF9AD6F0)],
@@ -58,42 +56,15 @@ class _HomePageState extends State<HomePage> {
                     horizontal: 20,
                     vertical: 30,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            'ระบบบริการนักศึกษา',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            'Student Smart University',
-                            style: TextStyle(color: Colors.white, fontSize: 14),
-                          ),
-                        ],
+                  child: const Center(
+                    child: Text(
+                      'ระบบบริการนักศึกษา',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          // ignore: deprecated_member_use
-                          color: Colors.white.withOpacity(0.2),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.notifications_none,
-                          color: Colors.white,
-                          size: 26,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
                 Positioned(
@@ -104,7 +75,6 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        // ignore: deprecated_member_use
                         color: Colors.white.withOpacity(0.6),
                         borderRadius: BorderRadius.circular(8),
                         boxShadow: [
@@ -125,70 +95,53 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.all(20),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 22.0,
-                        horizontal: 15,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 6,
-                            offset: Offset(0, 0),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                "รหัสนักศึกษา",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(height: 18),
-                              Text(
-                                "65xxxxxxxx",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "ภาคเรียน",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(height: 18),
-                              Text(
-                                "1/2568",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF00A9E0),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                      child: Text(
+                        "ประกาศ",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
+                    SizedBox(
+                      height: 140,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        clipBehavior: Clip.none,
+                        padding: const EdgeInsets.only(left: 20, right: 5),
+                        child: Row(
+                          children: [
+                            _buildAnnouncementCard(
+                              imageAsset: 'assets/images/homenews1.jpg',
+                              onTap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('ไปหน้าลงทะเบียนรถ'),
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(width: 15),
+                            _buildAnnouncementCard(
+                              imageAsset: 'assets/images/homenews2.jpg',
+                              onTap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('ไปหน้าแจ้งปัญหาเน็ต'),
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(width: 15),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       padding: const EdgeInsets.all(15),
@@ -213,22 +166,19 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
                           GridView(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             gridDelegate:
                                 const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent:
-                                      150, // ความกว้างสูงสุดต่อช่อง (จะปรับคอลัมน์อัตโนมัติ)
+                                  maxCrossAxisExtent: 150,
                                   crossAxisSpacing: 15,
                                   mainAxisSpacing: 15,
-                                  //childAspectRatio: 1, // อัตราส่วนกว้าง/สูง
                                 ),
                             children: [
                               _buildMenuItem(
-                                icon: Icons.person,
                                 "ข้อมูลส่วนตัว",
+                                icon: Icons.person,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -239,8 +189,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                icon: Icons.newspaper,
                                 "ข่าวสาร",
+                                icon: Icons.newspaper,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -251,8 +201,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                icon: Icons.attach_money,
                                 "การชำระเงิน",
+                                icon: Icons.attach_money,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -263,8 +213,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                icon: Icons.menu_book,
                                 "แผนการเรียน",
+                                icon: Icons.menu_book,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -275,8 +225,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                icon: Icons.calendar_month,
                                 "ตารางเรียน",
+                                icon: Icons.calendar_month,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -287,8 +237,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                icon: Icons.date_range,
                                 "ตารางสอบ",
+                                icon: Icons.date_range,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -299,8 +249,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                icon: Icons.edit_document,
                                 "ลงทะเบียนเรียน",
+                                icon: Icons.edit_document,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -311,8 +261,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                icon: Icons.playlist_add,
                                 "จองวิชาเสรี",
+                                icon: Icons.playlist_add,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -323,8 +273,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                icon: Icons.list_alt,
                                 "รายวิชาที่เปิดสอน",
+                                icon: Icons.list_alt,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -335,8 +285,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                boxText: "A+",
                                 "ผลการเรียน",
+                                boxText: "A+",
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -347,8 +297,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                icon: Icons.school,
                                 "สำเร็จการศึกษา",
+                                icon: Icons.school,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -359,8 +309,8 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                icon: Icons.edit_calendar_rounded,
                                 "การประเมิน",
+                                icon: Icons.edit_calendar_rounded,
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -385,13 +335,72 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _buildAnnouncementCard({
+    required String imageAsset,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 240,
+        height: 140,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 6,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.asset(
+            imageAsset,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return Container(
+                color: Colors.grey[200],
+                padding: const EdgeInsets.all(8),
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.broken_image,
+                      color: Colors.grey,
+                      size: 40,
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'โหลดรูปไม่สำเร็จ',
+                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      imageAsset.split('/').last,
+                      style: const TextStyle(color: Colors.grey, fontSize: 10),
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildMenuItem(
     String title, {
     IconData? icon,
-    String? boxText, // เพิ่มตัวแปรสำหรับรับ Text
+    String? boxText,
     VoidCallback? onTap,
   }) {
-    // ตรวจสอบว่าต้องมี icon หรือ boxText อย่างใดอย่างหนึ่งเท่านั้น
     assert(
       icon != null || boxText != null,
       'Must provide either an icon or boxText',
@@ -414,9 +423,9 @@ class _HomePageState extends State<HomePage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 60, // อาจจะกำหนดขนาดให้คงที่
-            height: 60, // เพื่อให้กล่องเท่ากัน
-            padding: const EdgeInsets.all(8), // ปรับ padding ให้พอดี
+            width: 60,
+            height: 60,
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: const Color(0xFF6EC6FF),
               borderRadius: BorderRadius.circular(10),
@@ -424,17 +433,16 @@ class _HomePageState extends State<HomePage> {
             child: icon != null
                 ? Icon(icon, color: Colors.white, size: 30)
                 : Text(
-                    boxText!, // ใส่ ! เพราะเรา assert แล้วว่าต้องมีค่า
+                    boxText!,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 30, // ปรับขนาดตามความเหมาะสม
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-            // --- จบส่วนที่แก้ไข ---
           ),
           const SizedBox(height: 8),
           Text(
