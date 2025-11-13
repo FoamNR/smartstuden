@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smartpsru/screens/elective_booking.dart';
 import 'package:smartpsru/screens/evaluation_screen.dart';
+import 'package:smartpsru/screens/exam_schedule.dart';
 import 'package:smartpsru/screens/grade_result_page.dart';
 import 'package:smartpsru/screens/graduation.dart';
 import 'package:smartpsru/screens/news.dart';
@@ -225,7 +226,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                             children: [
                               _buildMenuItem(
-                                Icons.person,
+                                icon: Icons.person,
                                 "ข้อมูลส่วนตัว",
                                 onTap: () {
                                   Navigator.push(
@@ -237,7 +238,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                Icons.newspaper,
+                                icon: Icons.newspaper,
                                 "ข่าวสาร",
                                 onTap: () {
                                   Navigator.push(
@@ -249,7 +250,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                Icons.attach_money,
+                                icon: Icons.attach_money,
                                 "การชำระเงิน",
                                 onTap: () {
                                   Navigator.push(
@@ -261,7 +262,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                Icons.menu_book,
+                                icon: Icons.menu_book,
                                 "แผนการเรียน",
                                 onTap: () {
                                   Navigator.push(
@@ -273,7 +274,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                Icons.calendar_month,
+                                icon: Icons.calendar_month,
                                 "ตารางเรียน",
                                 onTap: () {
                                   Navigator.push(
@@ -284,9 +285,20 @@ class _HomePageState extends State<HomePage> {
                                   );
                                 },
                               ),
-                              _buildMenuItem(Icons.date_range, "ตารางสอน"),
                               _buildMenuItem(
-                                Icons.edit_document,
+                                icon: Icons.date_range,
+                                "ตารางสอบ",
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => ExamSchedulePage(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              _buildMenuItem(
+                                icon: Icons.edit_document,
                                 "ลงทะเบียนเรียน",
                                 onTap: () {
                                   Navigator.push(
@@ -298,7 +310,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                Icons.library_music,
+                                icon: Icons.playlist_add,
                                 "จองวิชาเสรี",
                                 onTap: () {
                                   Navigator.push(
@@ -310,11 +322,11 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                Icons.list_alt,
-                                "รายวิชาที่เปิดสอบ",
+                                icon: Icons.list_alt,
+                                "รายวิชาที่เปิดสอน",
                               ),
                               _buildMenuItem(
-                                Icons.assignment,
+                                boxText: "A+",
                                 "ผลการเรียน",
                                 onTap: () {
                                   Navigator.push(
@@ -326,7 +338,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                Icons.school,
+                                icon: Icons.school,
                                 "สำเร็จการศึกษา",
                                 onTap: () {
                                   Navigator.push(
@@ -338,7 +350,7 @@ class _HomePageState extends State<HomePage> {
                                 },
                               ),
                               _buildMenuItem(
-                                Icons.edit_calendar_rounded,
+                                icon: Icons.edit_calendar_rounded,
                                 "การประเมิน",
                                 onTap: () {
                                   Navigator.push(
@@ -364,7 +376,22 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String title, {VoidCallback? onTap}) {
+  Widget _buildMenuItem(
+    String title, {
+    IconData? icon,
+    String? boxText, // เพิ่มตัวแปรสำหรับรับ Text
+    VoidCallback? onTap,
+  }) {
+    // ตรวจสอบว่าต้องมี icon หรือ boxText อย่างใดอย่างหนึ่งเท่านั้น
+    assert(
+      icon != null || boxText != null,
+      'Must provide either an icon or boxText',
+    );
+    assert(
+      icon == null || boxText == null,
+      'Cannot provide both an icon and boxText',
+    );
+
     return InkWell(
       borderRadius: BorderRadius.circular(10),
       onTap:
@@ -378,12 +405,27 @@ class _HomePageState extends State<HomePage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: const EdgeInsets.all(15),
+            width: 60, // อาจจะกำหนดขนาดให้คงที่
+            height: 60, // เพื่อให้กล่องเท่ากัน
+            padding: const EdgeInsets.all(8), // ปรับ padding ให้พอดี
             decoration: BoxDecoration(
               color: const Color(0xFF6EC6FF),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(icon, color: Colors.white, size: 30),
+            child: icon != null
+                ? Icon(icon, color: Colors.white, size: 30)
+                : Text(
+                    boxText!, // ใส่ ! เพราะเรา assert แล้วว่าต้องมีค่า
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 30, // ปรับขนาดตามความเหมาะสม
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+            // --- จบส่วนที่แก้ไข ---
           ),
           const SizedBox(height: 8),
           Text(
