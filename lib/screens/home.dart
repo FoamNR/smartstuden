@@ -6,6 +6,7 @@ import 'package:smartpsru/screens/exam_schedule.dart';
 import 'package:smartpsru/screens/grade_result_page.dart';
 import 'package:smartpsru/screens/graduation.dart';
 import 'package:smartpsru/screens/news.dart';
+import 'package:smartpsru/screens/offered_courses.dart';
 import 'package:smartpsru/screens/payment_page.dart';
 import 'package:smartpsru/screens/plan.dart';
 import 'package:smartpsru/screens/profile.dart';
@@ -324,6 +325,14 @@ class _HomePageState extends State<HomePage> {
                               _buildMenuItem(
                                 icon: Icons.list_alt,
                                 "รายวิชาที่เปิดสอน",
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => OfferedCoursesPage(),
+                                    ),
+                                  );
+                                },
                               ),
                               _buildMenuItem(
                                 boxText: "A+",
