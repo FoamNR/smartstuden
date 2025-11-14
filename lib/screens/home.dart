@@ -170,11 +170,11 @@ class _HomePageState extends State<HomePage> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             gridDelegate:
-                                const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 150,
-                                  crossAxisSpacing: 15,
-                                  mainAxisSpacing: 15,
-                                ),
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3, // <--- แก้ไขจุดที่ 1
+                              crossAxisSpacing: 15,
+                              mainAxisSpacing: 15,
+                            ),
                             children: [
                               _buildMenuItem(
                                 "ข้อมูลส่วนตัว",
@@ -447,8 +447,10 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 8),
           Text(
             title,
-            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
             textAlign: TextAlign.center,
+            maxLines: 1, // <--- แก้ไขจุดที่ 2
+            overflow: TextOverflow.ellipsis, // <--- แก้ไขจุดที่ 2
           ),
         ],
       ),
