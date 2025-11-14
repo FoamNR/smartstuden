@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 160,
+                  height: 120,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       colors: [Color(0xFF00A9E0), Color(0xFF9AD6F0)],
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Positioned(
-                  bottom: -45,
+                  bottom: -55,
                   left: 0,
                   right: 0,
                   child: Center(
@@ -85,13 +85,13 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      child: Image.asset('assets/images/logo2.png', height: 70),
+                      child: Image.asset('assets/images/logo2.png', height: 65),
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 60),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
